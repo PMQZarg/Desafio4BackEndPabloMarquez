@@ -8,7 +8,8 @@
     "code": "abc",
     "stock": 7,
     "category": "produccion",
-    "status": "disponible"
+    "status": "disponible",
+    "quantity": 3
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "code": "def",
     "stock": 10,
     "category": "produccion",
-    "status": "disponible"
+    "status": "disponible",
+    "quantity": 5
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "code": "ghi",
     "stock": 14,
     "category": "canto",
-    "status": "disponible"
+    "status": "disponible",
+    "quantity": 7
   },
   {
     "id": 4,
@@ -41,7 +44,8 @@
     "code": "jkl",
     "stock": 25,
     "category": "canto",
-    "status": "disponible"
+    "status": "disponible",
+    "quantity": 37
   },
   {
     "id": 5,
@@ -52,7 +56,8 @@
     "code": "mnñ",
     "stock": 25,
     "category": "canto",
-    "status": "disponible"
+    "status": "disponible",
+    "quantity": 45
   },
   {
     "id": 6,
@@ -63,7 +68,8 @@
     "code": "opq",
     "stock": 27,
     "category": "piano-teclado",
-    "status": "disponible"
+    "status": "disponible",
+    "quantity": 50
   },
   {
     "id": 7,

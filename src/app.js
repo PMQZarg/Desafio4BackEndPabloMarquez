@@ -3,6 +3,12 @@ import path from "path";
 import handlebars from "express-handlebars";
 import viewsRouter from "./routes/views.router.js";
 import { Server } from "socket.io"; // este Server se creará a partir del server HTTP
+import { ProductManager } from "./manager/productManager.js";
+import { CartManager } from "./manager/cartManager.js";
+//import Index from "./router/indexRouter.js";
+import productsRouter from "./router/productsRouter.js";
+import cartsRouter from "./router/cartRouter.js";
+
 
 const app = express();
 const PORT = 8080;
@@ -16,6 +22,16 @@ import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename); 
+
+const pathProducts = "./src/data/products.json";
+const pathCarts = "./src/data/carts.json";
+
+export const productManager = new ProductManager(pathProducts);
+export const cartManager = new CartManager(pathCarts);
+
+app.use("/api", Index);
+app.use("/api/products/", productsRouter);
+app.use("/api/carts/", cartsRouter);
 
 const httpServer = app.listen(PORT, () =>
   console.log(`Servidor corriendo en el puerto ${PORT}`)
