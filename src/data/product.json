@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "title": "Producción Musical Integral Full Banda",
+    "description": "Formato Full Banda",
+    "price": 100,
+    "thumbnail": "miMiniatura",
+    "code": "abc",
+    "stock": 7,
+    "category": "produccion",
+    "status": "disponible"
+  },
+  {
+    "id": 2,
+    "title": "Producción Musical Integral Acústico",
+    "description": "Formato Acústico",
+    "price": 60,
+    "thumbnail": "miMiniatura",
+    "code": "def",
+    "stock": 10,
+    "category": "produccion",
+    "status": "disponible"
+  },
+  {
+    "id": 3,
+    "title": "Producción Musical Integral Dúo",
+    "description": "Formato Dúo",
+    "price": 40,
+    "thumbnail": "miMiniatura",
+    "code": "ghi",
+    "stock": 14,
+    "category": "canto",
+    "status": "disponible"
+  },
+  {
+    "id": 4,
+    "title": "Curso de Canto PMQZ",
+    "description": "Curso completo, vocalización, dicción, respiración, rítmica, armonía, improvisación, repertorio",
+    "price": 150,
+    "thumbnail": "miMiniatura",
+    "code": "jkl",
+    "stock": 25,
+    "category": "canto",
+    "status": "disponible"
+  },
+  {
+    "id": 5,
+    "title": "10 vocalizaciones para afinar cualquier canción",
+    "description": "10 tipos de melodias, con sus variantes en dicción, rítmica, dinámicas de intensidad",
+    "price": 45,
+    "thumbnail": "miMiniatura",
+    "code": "mnñ",
+    "stock": 25,
+    "category": "canto",
+    "status": "disponible"
+  },
+  {
+    "id": 6,
+    "title": "Curso de piano-teclado fácil, rápido y directo I",
+    "description": "10 lecciones donde se aprenderá, ubicación de notas, postura, digitación, audioperceptiva, lectura, introducción a armonía en acordes",
+    "price": 45,
+    "thumbnail": "miMiniatura",
+    "code": "opq",
+    "stock": 27,
+    "category": "piano-teclado",
+    "status": "disponible"
+  },
+  {
+    "id": 7,
+    "title": "Curso de piano-teclado fácil, rápido y directo II",
+    "description": "10 lecciones donde se aprenderá, acordes, armonía, secuencias armónicas, analisis de esquemas, ritmo armónico, transposición, introducción a composición",
+    "price": 45,
+    "thumbnail": "miMiniatura",
+    "code": "rst",
+    "stock": 30,
+    "category": "piano-teclado",
+    "status": "disponible"
+  }
+]
