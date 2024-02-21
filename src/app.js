@@ -4,7 +4,7 @@ import handlebars from "express-handlebars";
 import viewsRouter from "./routes/views.router.js";
 import { Server } from "socket.io"; // este Server se creará a partir del server HTTP
 import { ProductManager } from "./manager/productManager.js";
-import { CartManager } from "./manager/cartManager.js";
+import { CartManager } from "./";
 //import Index from "./router/indexRouter.js";
 import productsRouter from "./router/productsRouter.js";
 import cartsRouter from "./router/cartRouter.js";
