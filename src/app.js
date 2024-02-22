@@ -6,8 +6,8 @@ import { Server } from "socket.io"; // este Server se creará a partir del serve
 import { ProductManager } from "./manager/productManager.js";
 import { CartManager } from "./manager/cartManager.js";
 //import Index from "./router/indexRouter.js";
-import productsRouter from "./routes/routeManager/routeProductsManager.js";
-import cartsRouter from "./routes/routeManager/routeCartsManager.js";
+import productsRouter from "./routes/routeProductsManager.js";
+import cartsRouter from "./routes/routeCartsManager.js";
 
 const app = express();
 const PORT = 8080;
@@ -53,8 +53,61 @@ socketServer.on("connection", (socket) => {
 
   // aqui despues de socket.on (que quiere sirve para RECIBIR) se indica entre ("porEjMessage")el ID o nombre del mensaje que recibiré
   //se pone una coma, y luego se hace un callback con la data que me enviaron, mi visual pone las paréntesis, pero la filmina no lo indica
-  socket.on("message", (data) => {
+  /*socket.on("message", (data) => {
     console.log(data); // este console.log dice que va a mostrar(data), lo pone entre parentesis, luego el punto y coma
     socket.emit("message", data); // aqui se emite mnesaje desde mi servidor, pero como cliente, esto conectado a index.js (desde ahi)
+  });
+
+*/
+  try {
+    const products = p.getProducts();
+    socketServer.emit("products", products);
+  } catch (error) {
+    socketServer.emit("response", { status: "error", message: error.message });
+  }
+
+  socket.on("new-Product", async (newProduct) => {
+    try {
+      const objectProductNew = {
+        title: newProduct.title,
+        description: newProduct.description,
+        code: newProduct.code,
+        price: newProduct.price,
+        status: newProduct.status,
+        stock: newProduct.stock,
+        category: newProduct.category,
+        thumbnail: newProduct.thumbnail,
+      };
+      const pushProduct = p.addProduct(objectProductNew);
+      const updatedListProd = p.getProducts();
+      socketServer.emit("products", updatedListProd);
+      socketServer.emit("response", {
+        status: "success",
+        message: pushProduct,
+      });
+    } catch (error) {
+      socketServer.emit("response", {
+        status: "error",
+        message: error.message,
+      });
+    }
+  });
+
+  socket.on("delete-product", async (id) => {
+    try {
+      const pid = parseInt(id);
+      const deleteProduct = p.deleteProduct(pid);
+      const updatedListProd = p.getProducts();
+      socketServer.emit("products", updatedListProd);
+      socketServer.emit("response", {
+        status: "success",
+        message: "producto eliminado correctamente",
+      });
+    } catch (error) {
+      socketServer.emit("response", {
+        status: "error",
+        message: error.message,
+      });
+    }
   });
 });
