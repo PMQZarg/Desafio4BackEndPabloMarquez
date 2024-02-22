@@ -6,8 +6,8 @@ import { Server } from "socket.io"; // este Server se creará a partir del serve
 import { ProductManager } from "./manager/productManager.js";
 import { CartManager } from "./manager/cartManager.js";
 //import Index from "./router/indexRouter.js";
-import productsRouter from "./routeManager/routeProductsManager.js";
-import cartsRouter from "./routeManager/routeCartsManager.js";
+import productsRouter from "./routes/routeManager/routeProductsManager.js";
+import cartsRouter from "./routes/routeManager/routeCartsManager.js";
 
 const app = express();
 const PORT = 8080;
@@ -22,8 +22,8 @@ import { dirname, join } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const pathProducts = path.join(__dirname,"./src/data/products.json");
-const pathCarts = path.join(__dirname,"./src/data/carts.json");
+const pathProducts = path.join(__dirname, "./src/data/products.json");
+const pathCarts = path.join(__dirname, "./src/data/carts.json");
 
 export const productManager = new ProductManager(pathProducts);
 export const cartManager = new CartManager(pathCarts);
@@ -44,13 +44,8 @@ app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname + "/public"))); //sirve para tener archivos js y css en las plantillas
 app.use("/", viewsRouter);
 
-
 app.use("/api/products/", productsRouter);
 app.use("/api/carts/", cartsRouter);
-
-
-
-
 
 //esto es para que se me avise que hay un cliente conectado a mi servidor
 socketServer.on("connection", (socket) => {

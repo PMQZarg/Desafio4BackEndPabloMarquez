@@ -39,7 +39,6 @@ export class ProductManager {
       category,
       status,
       quantity,
-      
     } = product;
 
     if (
@@ -70,7 +69,7 @@ export class ProductManager {
       stock: stock,
       category: category,
       status: status,
-      quantity: 1
+      quantity: 1,
     };
 
     this.products.push(newProduct);
