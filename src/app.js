@@ -4,11 +4,10 @@ import handlebars from "express-handlebars";
 import viewsRouter from "./routes/views.router.js";
 import { Server } from "socket.io"; // este Server se creará a partir del server HTTP
 import { ProductManager } from "./manager/productManager.js";
-import { CartManager } from "./";
+import { CartManager } from "./manager/cartManager.js";
 //import Index from "./router/indexRouter.js";
-import productsRouter from "./router/productsRouter.js";
-import cartsRouter from "./router/cartRouter.js";
-
+import productsRouter from "./routeManager/routeProductsManager.js";
+import cartsRouter from "./routeManager/routeCartsManager.js";
 
 const app = express();
 const PORT = 8080;
@@ -21,15 +20,15 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename); 
+const __dirname = dirname(__filename);
 
-const pathProducts = "./src/data/products.json";
-const pathCarts = "./src/data/carts.json";
+const pathProducts = path.join(__dirname,"./src/data/products.json");
+const pathCarts = path.join(__dirname,"./src/data/carts.json");
 
 export const productManager = new ProductManager(pathProducts);
 export const cartManager = new CartManager(pathCarts);
 
-app.use("/api", Index);
+app.use("/api", viewsRouter);
 app.use("/api/products/", productsRouter);
 app.use("/api/carts/", cartsRouter);
 
@@ -42,8 +41,16 @@ const socketServer = new Server(httpServer);
 app.engine("handlebars", handlebars.engine());
 app.set("views", path.join(__dirname + "/views"));
 app.set("view engine", "handlebars");
-app.use(express.static(__dirname + "/public")); //sirve para tener archivos js y css en las plantillas
+app.use(express.static(path.join(__dirname + "/public"))); //sirve para tener archivos js y css en las plantillas
 app.use("/", viewsRouter);
+
+
+app.use("/api/products/", productsRouter);
+app.use("/api/carts/", cartsRouter);
+
+
+
+
 
 //esto es para que se me avise que hay un cliente conectado a mi servidor
 socketServer.on("connection", (socket) => {
@@ -53,8 +60,6 @@ socketServer.on("connection", (socket) => {
   //se pone una coma, y luego se hace un callback con la data que me enviaron, mi visual pone las paréntesis, pero la filmina no lo indica
   socket.on("message", (data) => {
     console.log(data); // este console.log dice que va a mostrar(data), lo pone entre parentesis, luego el punto y coma
-      socket.emit("message", data); // aqui se emite mnesaje desde mi servidor, pero como cliente, esto conectado a index.js (desde ahi)
-  
-}); 
-
-})
+    socket.emit("message", data); // aqui se emite mnesaje desde mi servidor, pero como cliente, esto conectado a index.js (desde ahi)
+  });
+});

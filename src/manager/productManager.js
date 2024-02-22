@@ -38,6 +38,7 @@ export class ProductManager {
       stock,
       category,
       status,
+      quantity,
       
     } = product;
 
@@ -49,7 +50,8 @@ export class ProductManager {
       !product.code ||
       !product.stock ||
       !product.category ||
-      !product.status
+      !product.status ||
+      !product.quantity
     ) {
       throw new Error("Todos los campos son obligatorios.");
     }
@@ -68,6 +70,7 @@ export class ProductManager {
       stock: stock,
       category: category,
       status: status,
+      quantity: 1
     };
 
     this.products.push(newProduct);
