@@ -1,35 +1,99 @@
 {{!--Se recomienda que, para la creación y eliminación de un producto, 
 Se cree un formulario simple en la vista  realTimeProducts.handlebars. Para que el contenido se envíe desde websockets y no HTTP
 --}}
+<h1>Productos:</h1>
+
+<table id="table">
+    <tr>
+        <th>id:</th>
+        <th>title:</th>
+        <th>description:</th>
+        <th>price:</th>
+        <th>thumbnail:</th>
+        <th>code:</th>
+        <th>stock:</th>
+        <th>category:</th>
+        <th>status:</th>
+        <th>quantity:</th>
+    </tr>
+    {{#each products}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td>{{price}}</td>
+            <td>{{thumbnail}}</td>
+            <td>{{code}}</td>
+            <td>{{stock}}</td>
+            <td>{{category}}</td>
+            <td>{{status}}</td>
+            <td>{{quantity}}</td>
+        </tr>
+    {{/each}}
+</table>
+
+<form id="addNewProduct">
+    <h2>Agregar Producto:</h2>
+
+    <div class="form-field">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title">
+    </div>
+
+    <div class="form-field">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description">
+    </div>
+
+    <div class="form-field">
+        <label for="code ">Code</label>
+        <input type="text" name="code" id="code">
+    </div>
+
+    <div class="form-field">
+        <label for="price ">Price</label>
+        <input type="number" name="price" id="price">
+    </div>
+
+    <div class="form-field">
+        <label for="status">Status</label>
+        <select id="status" name="status">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+    </div>
+
+    <div class="form-field">
+        <label for="stock ">Stock</label>
+        <input type="number" name="stock" id="stock">
+    </div>
+
+    <div class="form-field">
+        <label for="category ">Category</label>
+        <input type="text" name="category" id="category">
+    </div>
+
+    <div class="form-field">
+        <label for="thumbnail">Thumbnail</label>
+        <input type="text" name="thumbnail" id="thumbnail">
+    </div>
+
+    <button type="submit">Agregar Producto</button>
+</form>
+
+<form id ="deleteProduct">
+    <h2>Borrar Productos:</h2>
+
+    <div class="form-field">
+        <label for="id">Id de Producto a eliminarse</label>
+        <input type="text" name="id" id="id" >
+    </div>
+
+    <button type="submit">Eliminar Producto</button>
+</form>
 
 
-<div>
-  Trabajando desde WebSockets
-
-<input type="text" id="message">
-<button id="btn-send" onclick="enviarMensaje()">Enviar</button>
-</div>
+<div id="responseContainer"></div>
 
 <script src="/socket.io/socket.io.js"></script>
-{{!se instancia el socket del cliente además del propio mio, se hace con esta sintaxis}}
-
-<script>
-const socket = io()
-
-function enviarMensaje(){
-  const message = document.getElementById("message").value 
-  socket.emit("message", message)
-
-  const boton = document.getElementById("btn-send")
-  boton.addEventListener("click", ()=>{
-    console.log("click")
-  })
-  //Escuchar eventos
-  socket.on("message", (data)=>{
-    console.log(`Mensaje recibido: ${data}`)
-  })
-}
-  
-</script>
-{{!<script src="/js/index.js"></script>}}
-{{!El script de socket siempre debe estar antes que el script propio}}
+<script src="js/index.js"><

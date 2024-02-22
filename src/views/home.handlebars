@@ -4,15 +4,16 @@
 
 <table>
     <tr>
-        <th>Id:</th>
-        <th>Título:</th>
-        <th>Descripción:</th>
-        <th>Código:</th>
-        <th>Precio:</th>
-        <th>Estado:</th>
-        <th>Stock:</th>
-        <th>Categoría:</th>
-        <th>Imágenes:</th>
+        <th>id:</th>
+        <th>title:</th>
+        <th>description:</th>
+        <th>price:</th>
+        <th>thumbnail:</th>
+        <th>code:</th>
+        <th>stock:</th>
+        <th>category:</th>
+        <th>status:</th>
+        <th>quantity:</th>
     </tr>
 
     {{#each products}}
@@ -20,12 +21,13 @@
             <td>{{id}}</td>
             <td>{{title}}</td>
             <td>{{description}}</td>
+            <td>{{price}}</td>
+            <td>${{thumbnail}}</td>
             <td>{{code}}</td>
-            <td>${{price}}</td>
-            <td>{{status}}</td>
             <td>{{stock}}</td>
             <td>{{category}}</td>
-            <td>{{thumbnail}}</td>
+            <td>{{status}}</td>
+            <td>{{quantity}}</td>
         </tr>
     {{/each}}
 </table>
